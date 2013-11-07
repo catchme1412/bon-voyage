@@ -46,10 +46,15 @@ public class DatabaseManagerImpl implements InitializingBean, DatabaseManager {
     @Autowired
     Neo4jOperations template;
 
+    public Node getNodeById(Long id) {
+    	return template.getNode(id);
+    }
     @Override
     public void addRailwayStation(RailwayStation station) {
         template.save(station);
-        stationLayer.add(station.getCoordinate());
+        if (station.getCoordinate() != null) {
+        	stationLayer.add(station.getCoordinate());
+        }
     }
 
     public void addRouteLeg(RouteLeg leg) {
@@ -97,20 +102,7 @@ public class DatabaseManagerImpl implements InitializingBean, DatabaseManager {
         return template.getNode(station.getId());
     }
 
-    @Override
-    public Iterable<Path> getAllSimplePath(Node from, Node to) {
-        // TODO Auto-generated method stub
-        Expander relExpander = Traversal.expanderForTypes(RelationshipTypes.RAIL_ROUTE, Direction.OUTGOING);
-
-        relExpander.add(RelationshipTypes.RAIL_ROUTE, Direction.OUTGOING);
-
-        // CostEvaluator<Double> costEval = ;
-        // EstimateEvaluator<Double> estimateEval;
-        // PathFinder<WeightedPath> shortestPath =
-        // GraphAlgoFactory.aStar(relExpander, costEval, estimateEval);
-        PathFinder<Path> pf = GraphAlgoFactory.allSimplePaths(relExpander, 200);
-        return pf.findAllPaths(from, to);
-    }
+    
 
     @Override
     public Iterable<WeightedPath> getAstar(Node from, Node to) {
@@ -128,8 +120,29 @@ public class DatabaseManagerImpl implements InitializingBean, DatabaseManager {
 	@Override
 	public Coordinate getCoordinate(String stationName) {
 		RailwayStation found = railwayStationRepository.findByStationName(stationName);
-		
+		System.out.println("LOOKING FOR :" + stationName);
 		return found != null ? found.getCoordinate() : null;
+	}
+	
+	@Override
+    public Iterable<Path> getAllSimplePath(Node from, Node to) {
+        // TODO Auto-generated method stub
+        Expander relExpander = Traversal.expanderForTypes(RelationshipTypes.RAIL_ROUTE, Direction.OUTGOING);
+
+        relExpander.add(RelationshipTypes.RAIL_ROUTE, Direction.OUTGOING);
+
+        // CostEvaluator<Double> costEval = ;
+        // EstimateEvaluator<Double> estimateEval;
+        // PathFinder<WeightedPath> shortestPath =
+        // GraphAlgoFactory.aStar(relExpander, costEval, estimateEval);
+        PathFinder<Path> pf = GraphAlgoFactory.allSimplePaths(relExpander, 200);
+        return pf.findAllPaths(from, to);
+    }
+	
+	@Override
+	public Iterable<Path> getAllSimplePath(RailwayStation from, RailwayStation to) {
+		// TODO Auto-generated method stub
+		return getAllSimplePath (template.getNode(from.getId()), template.getNode(to.getId()));
 	}
 
 }

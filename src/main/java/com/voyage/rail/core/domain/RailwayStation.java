@@ -25,18 +25,15 @@ public class RailwayStation {
 	// @RelatedToVia
 	// private Collection<RouteLeg> routes;
 
-	public RailwayStation() {
-		// routes = new HashSet<RouteLeg>();
-//		stationCode = "NIL";
-//		stationName = "NIL";
-//		coordinate = new Coordinate();
-	}
-
 	public RailwayStation(Node node) {
 		id = node.getId();
 		stationCode = (String) node.getProperty("stationCode", "NIL");
 		stationName = (String) node.getProperty("stationName", "NIL");
-		coordinate = (Coordinate) node.getProperty("coordinate", new Coordinate());
+		coordinate = (Coordinate) node.getProperty("coordinate", new Coordinate(-.5, -.5));
+	}
+
+	public RailwayStation() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getStationName() {

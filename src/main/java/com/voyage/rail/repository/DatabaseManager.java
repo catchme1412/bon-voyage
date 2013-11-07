@@ -32,4 +32,8 @@ public interface DatabaseManager {
 	public Node getNode(RailwayStation station);
 
     Iterable<WeightedPath> getAstar(Node from, Node to);
+
+	Node getNodeById(Long id);
+
+	public Iterable<Path> getAllSimplePath(RailwayStation from, RailwayStation to);
 }
