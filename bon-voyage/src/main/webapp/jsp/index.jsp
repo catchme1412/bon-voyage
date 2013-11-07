@@ -1,13 +1,9 @@
-
 <%@taglib prefix="t" tagdir="/WEB-INF/tags/template/layout"%>
 <t:baselayout>
 		
 	<!-- Main Page Content and Sidebar -->
  
   <div class="row">
- <a href="${pageContext.request.contextPath}/home">click</a>
-<a href="${pageContext.request.contextPath}/init">init</a>
-<a href="${pageContext.request.contextPath}/map.jsp">Map</a>
  
     <!-- Contact Details -->
     <div class="large-9 columns">

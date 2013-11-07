@@ -78,7 +78,8 @@ public class DataLoadController {
 		RailwayStation retrievedMovie = databaseManager.getRailwayStation("SBC");
 		System.out.println(retrievedMovie.getStationCode());
 		try {
-			loadIntialData(databaseManager);
+//			loadIntialData(databaseManager);
+		    new DataPopulateService(databaseManager).loadIntialData();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
