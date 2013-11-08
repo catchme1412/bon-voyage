@@ -6,6 +6,6 @@ import org.neo4j.graphdb.RelationshipType;
 * @author mh
 * @since 12.03.11
 */
-public enum RelationshipTypes implements RelationshipType {
+public enum RouteRelationship implements RelationshipType {
 	RAIL_ROUTE;
 }

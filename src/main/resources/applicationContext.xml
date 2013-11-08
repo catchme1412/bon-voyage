@@ -18,14 +18,14 @@
 	
     <context:spring-configured/>
 
-    <neo4j:config storeDirectory="target/data/graph.db"/>
+    <neo4j:config storeDirectory="/tmp/graph.db"/>
     <neo4j:repositories base-package="com.voyage.rail.repository"/>
     
 	<bean id="databaseManager" class="com.voyage.rail.repository.DatabaseManagerImpl" />
 
 	<bean id="graphDatabaseService" class="org.neo4j.kernel.EmbeddedGraphDatabase"
 		destroy-method="shutdown">
-		<constructor-arg index="0" value="target/data/graph.db" />
+		<constructor-arg index="0" value="/tmp/graph.db" />
 		<constructor-arg index="1">
 			<map>
 				<entry key="allow_store_upgrade" value="true" />

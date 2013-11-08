@@ -5,17 +5,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import org.neo4j.graphalgo.GraphAlgoFactory;
-import org.neo4j.graphalgo.PathFinder;
-import org.neo4j.graphdb.Direction;
-import org.neo4j.graphdb.Expander;
+import org.joda.time.LocalTime;
 import org.neo4j.graphdb.Path;
 import org.neo4j.graphdb.Relationship;
-import org.neo4j.kernel.Traversal;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.voyage.rail.core.domain.RailwayStation;
-import com.voyage.rail.core.domain.RelationshipTypes;
 import com.voyage.rail.core.domain.RouteLeg;
 import com.voyage.rail.repository.DatabaseManager;
 import com.voyage.service.google.map.GoogleMapQueryResult;
@@ -111,6 +106,8 @@ public class DataPopulateService {
 					leg.setFrom(origin);
 					leg.setTo(destination);
 					leg.setTrainNumber(trainNumber);
+					leg.setDepartureTime(LocalTime.parse(arriveTime));
+					leg.setArrivalTime(LocalTime.parse(prevDepartureTime));
 					leg.setDistance(distanceBetween);
 					leg.setTrainType("EXP");
 					databaseManager.addRouteLeg(leg);

@@ -1,23 +1,10 @@
 package com.voyage.rail.web.controller;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
-import org.neo4j.graphalgo.GraphAlgoFactory;
-import org.neo4j.graphalgo.PathFinder;
-import org.neo4j.graphdb.Direction;
-import org.neo4j.graphdb.Expander;
-import org.neo4j.graphdb.Path;
-import org.neo4j.graphdb.PathExpander;
-import org.neo4j.graphdb.Relationship;
-import org.neo4j.graphdb.traversal.Evaluators;
-import org.neo4j.graphdb.traversal.TraversalDescription;
-import org.neo4j.kernel.Traversal;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -26,14 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.vividsolutions.jts.geom.Coordinate;
-import com.voyage.rail.core.domain.RailwayStation;
-import com.voyage.rail.core.domain.RelationshipTypes;
-import com.voyage.rail.core.domain.RouteLeg;
 import com.voyage.rail.repository.DatabaseManager;
-import com.voyage.service.google.map.GoogleMapQueryResult;
-import com.voyage.service.google.map.GoogleMapServiceProvider;
-import com.voyage.util.FileUtils;
 
 //import com.voyage.service.google.map.GoogleMapQueryResult;
 //import com.voyage.service.google.map.GoogleMapServiceProvider;

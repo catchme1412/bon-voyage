@@ -10,20 +10,23 @@ import com.voyage.service.UrlFetchService;
 
 public class GoogleMapServiceProvider {
 
-    public GoogleMapQueryResult getGeocode(String address) {
-        URL url;
-        GoogleMapQueryResult r = null;
-        try {
-            url = new URL("http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address="
-                    + URLEncoder.encode(address, "UTF-8"));
-            StringBuilder result = new UrlFetchService().fetch(url);
-            StringReader sr = new StringReader(result.toString()); // wrap your
-            r = new Gson().fromJson(new BufferedReader(sr), GoogleMapQueryResult.class);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return r;
-    }
+	public GoogleMapQueryResult getGeocode(String address) {
+		URL url;
+		GoogleMapQueryResult r = null;
+		try {
+			url = new URL("http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address="
+					+ URLEncoder.encode(address, "UTF-8"));
+			StringBuilder result = new UrlFetchService().fetch(url);
+			StringReader sr = new StringReader(result.toString()); // wrap your
+			r = new Gson().fromJson(new BufferedReader(sr), GoogleMapQueryResult.class);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return r;
+	}
+
+	// https://github.com/pushbit/sprockets#google-places-api
+	// AIzaSyDLtaVDZvAUMQUUemK34MEYvQbSDaZaFPg
 
 }

@@ -87,7 +87,7 @@ public class RailwayStation {
 		r.setArrivalTime(arrivalTime);
 		r.setDepartureTime(departureTime);
 		r.setDistance(distance);
-		return addRoute(r, "ROUTE");
+		return addRoute(r, RouteRelationship.RAIL_ROUTE.name());
 	}
 
 	public Coordinate getCoordinate() {

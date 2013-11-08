@@ -1,0 +1,32 @@
+0. Filter improper paths
+1. function for calculating the cost
+2. function for calculating the time
+3. function for calculating the number of trains
+4. function for Best Value
+5. function to find the rating of the station
+6. function to find the best station from origin
+7. Sorting facility for RailwayStation based ratings
+8. UI design
+9. AJAX for places api in the search box
+
+
+commit 57081eab63e0f5f8a13e5fa0b654db49de65d1b2
+Author: Rajesh KV <rajesh.k.v@orbitz.com>
+Date:   Fri Nov 8 05:47:46 2013 -0600
+
+    spatial
+
+commit caba9b5b88a36a68ca56a589a91cc4d38f3d476a
+Author: Rajesh KV <rajesh.k.v@orbitz.com>
+Date:   Fri Nov 8 02:27:03 2013 -0600
+
+    simple path
+
+commit 262c4c939bdaaae455784f6bb6d4c6d053c6f0b6
+Author: Rajesh Kumar K V <catchme1412@gmail.com>
+Date:   Fri Nov 8 03:32:11 2013 +0530
+
+    two files
+
+
+
