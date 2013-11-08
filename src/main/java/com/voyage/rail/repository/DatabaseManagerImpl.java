@@ -1,8 +1,11 @@
 package com.voyage.rail.repository;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.neo4j.gis.spatial.SimplePointLayer;
 import org.neo4j.gis.spatial.SpatialDatabaseService;
 import org.neo4j.gis.spatial.encoders.SimplePointEncoder;
@@ -160,5 +163,12 @@ public class DatabaseManagerImpl implements InitializingBean, DatabaseManager {
 		return closerPoints;
 	}
 
-	
+	public List<Path> filter(Iterable<Path> paths) {
+		List<Path> pathList = new ArrayList<Path>();
+		for (Path p : paths) {
+			pathList.add(p);
+		}
+		CollectionUtils.filter(pathList, new PathFilterPredicate());
+		return pathList;
+	}
 }

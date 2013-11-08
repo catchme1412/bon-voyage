@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.joda.time.LocalTime;
 import org.neo4j.graphdb.Path;
@@ -20,9 +22,11 @@ import com.voyage.util.FileUtils;
 public class DataPopulateService {
 
 	private DatabaseManager databaseManager;
+	private Map<String, Coordinate> coordinateMap;
 
 	public DataPopulateService(DatabaseManager databaseManager) {
 		this.databaseManager = databaseManager;
+		coordinateMap = new HashMap<String, Coordinate>();
 	}
 
 	public void loadIntialData() throws IOException {
@@ -144,11 +148,15 @@ public class DataPopulateService {
 			System.out.println("From cache:" + locationName);
 			return c;
 		} else {
-			locationName = locationName.replaceAll(" JN$", "");
-//			GoogleMapQueryResult r = new GoogleMapServiceProvider().getGeocode(locationName);
-//			lat = r.getResults().get(0).getGeometry().getLocation().getLat();
-//			lng = r.getResults().get(0).getGeometry().getLocation().getLng();
-			return new Coordinate(lat, lng);
+			c = coordinateMap.get(locationName);
+			if (c == null) {
+				locationName = locationName.replaceAll(" JN$", "");
+				GoogleMapQueryResult r = new GoogleMapServiceProvider().getGeocode(locationName);
+				lat = r.getResults().get(0).getGeometry().getLocation().getLat();
+				lng = r.getResults().get(0).getGeometry().getLocation().getLng();
+				c = new Coordinate(lat, lng);
+			}
+			return c;
 		}
 	}
 }
