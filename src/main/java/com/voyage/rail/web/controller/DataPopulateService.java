@@ -85,9 +85,7 @@ public class DataPopulateService {
 					double distanceBetween = distance - prevDistance;
 					System.out.println(prevStationCode + ">" + toStationCode + ":" + prevDepartureTime + "-"
 							+ arriveTime + ":distance:" + distanceBetween);
-					prevDepartureTime = a[5].trim();
-					prevStationCode = toStationCode;
-					prevDistance = distance;
+					
 					RailwayStation origin = databaseManager.getRailwayStation(prevStationCode);
 					if (origin == null) {
 						origin = new RailwayStation();
@@ -110,8 +108,8 @@ public class DataPopulateService {
 					leg.setFrom(origin);
 					leg.setTo(destination);
 					leg.setTrainNumber(trainNumber);
-					leg.setDepartureTime(LocalTime.parse(arriveTime));
-					leg.setArrivalTime(LocalTime.parse(prevDepartureTime));
+					leg.setDepartureTime(LocalTime.parse(prevDepartureTime));
+					leg.setArrivalTime(LocalTime.parse(arriveTime));
 					leg.setDistance(distanceBetween);
 					leg.setTrainType("EXP");
 					databaseManager.addRouteLeg(leg);
@@ -132,7 +130,9 @@ public class DataPopulateService {
 							System.out.println(re.getProperty("trainNumber"));
 						}
 					}
-
+					prevDepartureTime = a[5].trim();
+					prevStationCode = toStationCode;
+					prevDistance = distance;
 				}
 			}
 		} catch (Exception e) {

@@ -1,8 +1,6 @@
 package com.voyage.rail.repository;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -138,7 +136,7 @@ public class DatabaseManagerImpl implements InitializingBean, DatabaseManager {
 		// EstimateEvaluator<Double> estimateEval;
 		// PathFinder<WeightedPath> shortestPath =
 		// GraphAlgoFactory.aStar(relExpander, costEval, estimateEval);
-		PathFinder<Path> pf = GraphAlgoFactory.allSimplePaths(relExpander, 200);
+		PathFinder<Path> pf = GraphAlgoFactory.allPaths(relExpander, 200);
 		return pf.findAllPaths(from, to);
 	}
 
